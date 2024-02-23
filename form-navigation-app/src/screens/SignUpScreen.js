@@ -4,49 +4,52 @@ import Typography from "../components/Typography";
 import CustomButton from "../components/CustomButton";
 import CustomInput from "../components/CustomInput";
 import TextButton from "../components/TextButton";
+import Layout from "../components/Layout";
 
 const SignUpScreen = ({ navigation }) => {
   const handleNavigateToLogIn = () => {
     navigation.navigate("LogInScreen");
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <Typography
-          style={styles.text}
-          text={"Welcome Onboard"}
-          fontWeight={"bold"}
-          fontSize={22}
-        />
-
-        <Typography
-          style={styles.text}
-          text={"Let's help you meet up your tasks."}
-          fontWeight={"medium"}
-          fontSize={16}
-        />
-      </View>
-
-      <View style={styles.inputsContainer}>
-        <CustomInput text={"Enter your full name"} />
-        <CustomInput text={"Enter your email"} />
-        <CustomInput text={"Enter password"} />
-        <CustomInput text={"Enter confirm password"} />
-      </View>
-
-      <View style={styles.inputsContainer}>
-        <CustomButton style={styles.buttonContainer} text={"Register"} />
-
-        <View style={styles.textsContainer}>
+    <Layout>
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
           <Typography
-            text={"Already have an account ? "}
-            fontWeight={"medium"}
-            fontSize={12}
+            style={styles.text}
+            text={"Welcome Onboard"}
+            fontWeight={"bold"}
+            fontSize={22}
           />
-          <TextButton text={"Sign In"} onPress={handleNavigateToLogIn} />
+
+          <Typography
+            style={styles.text}
+            text={"Let's help you meet up your tasks."}
+            fontWeight={"medium"}
+            fontSize={16}
+          />
+        </View>
+
+        <View style={styles.inputsContainer}>
+          <CustomInput text={"Enter your full name"} />
+          <CustomInput text={"Enter your email"} />
+          <CustomInput text={"Enter password"} />
+          <CustomInput text={"Enter confirm password"} />
+        </View>
+
+        <View style={styles.inputsContainer}>
+          <CustomButton style={styles.buttonContainer} text={"Register"} />
+
+          <View style={styles.textsContainer}>
+            <Typography
+              text={"Already have an account ? "}
+              fontWeight={"medium"}
+              fontSize={12}
+            />
+            <TextButton text={"Sign In"} onPress={handleNavigateToLogIn} />
+          </View>
         </View>
       </View>
-    </View>
+    </Layout>
   );
 };
 

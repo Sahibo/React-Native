@@ -3,38 +3,44 @@ import { View, Text, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import Typography from "../components/Typography";
 import CustomButton from "../components/CustomButton";
+import Layout from "../components/Layout";
 
 const WelcomeScreen = ({ navigation }) => {
-  const handleNavigateToRegister = () =>
-  {
-      navigation.navigate('SignUpScreen')
-  }
+  const handleNavigateToRegister = () => {
+    navigation.navigate("SignUpScreen");
+  };
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../images/WelcomePageImage.png")}
-        contentFit="cover"
-      />
-
-      <View style={styles.textsContainer}>
-        <Typography
-          style={styles.text}
-          text={"Gets things done with to do"}
-          fontWeight={"bold"}
-          fontSize={22}
+    <Layout>
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={require("../images/WelcomePageImage.png")}
+          contentFit="cover"
         />
 
-        <Typography
-          style={styles.text}
-          text={"Lorem ipsum dolor sit amet consectetur. Enim."}
-          fontWeight={"semi"}
-          fontSize={16}
+        <View style={styles.textsContainer}>
+          <Typography
+            style={styles.text}
+            text={"Gets things done with to do"}
+            fontWeight={"bold"}
+            fontSize={22}
+          />
+
+          <Typography
+            style={styles.text}
+            text={"Lorem ipsum dolor sit amet consectetur. Enim."}
+            fontWeight={"semi"}
+            fontSize={16}
+          />
+        </View>
+
+        <CustomButton
+          style={styles.buttonContainer}
+          text={"Get Started"}
+          onPress={handleNavigateToRegister}
         />
       </View>
-
-      <CustomButton style={styles.buttonContainer} text={"Get Started"} onPress={handleNavigateToRegister}/>
-    </View>
+    </Layout>
   );
 };
 
