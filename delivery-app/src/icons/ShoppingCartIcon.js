@@ -2,18 +2,19 @@ import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
 const ShoppingCartIcon = (props) => {
-  const { color } = props;
+  const { color, borderColor } = props;
 
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      height={25}
-      width={25}
+      height={24}
+      width={24}
       fill="none"
       {...props}
     >
       <Path
-        stroke={color || "#9586A8"}
+        stroke={borderColor || "#9586A8"}
+        fill={color || "transparent"}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}

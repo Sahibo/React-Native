@@ -28,6 +28,7 @@ interface IBaseText {
   lineHeight?: number;
   letterSpacing?: number;
   color?: string;
+  textAlign?: "center" | "justify" | "auto" | "left" | "right" | undefined;
   weight: "normal" | "medium" | "semiBold" | "bold";
   textDecorationLine?:
     | "none"
@@ -43,6 +44,7 @@ const BaseText = ({
   fontSize,
   lineHeight,
   letterSpacing,
+  textAlign,
   textDecorationLine,
   color = "#2D0C57",
   textStyles,
@@ -56,6 +58,7 @@ const BaseText = ({
           fontSize,
           lineHeight,
           letterSpacing,
+          textAlign,
           textDecorationLine,
           color,
         },
@@ -71,7 +74,7 @@ export const Typography = (props: any) => <BaseText {...props} />;
 export const H1 = (props: any) => (
   <BaseText
     fontSize={34}
-    lineHeight={41}
+    lineHeight={42}
     weight="bold"
     letterSpacing={0.41}
     {...props}

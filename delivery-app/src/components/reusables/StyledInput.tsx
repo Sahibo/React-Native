@@ -1,5 +1,8 @@
-import React, { ReactNode } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import React, { Children, ReactNode } from "react";
+import { View, TextInput, Text } from "react-native";
+
+import SearchIcon from "../../icons/SearchIcon";
+import { Typography } from "./StyledTypography";
 
 interface IBaseInput {
   height: number;
@@ -33,9 +36,9 @@ const BaseInput = ({
   paddingVertical = 12,
   paddingHorizontal = 25,
   gap = 16,
-  borderRadius = 8,
-  borderWidth,
-  borderColor,
+  borderRadius,
+  borderWidth = 1,
+  borderColor = "#D9D0E3",
   backgroundColor = "#FFFFFF",
   color = "#9586A8",
   placeholder,
@@ -83,13 +86,17 @@ const BaseInput = ({
   );
 };
 
-export const Search = (props: any) => (
+export const SearchInput = (props: any) => (
   <BaseInput
     width="100%"
-    borderWidth={1}
     borderRadius={27}
-    borderColor="#D9D0E3"
     placeholder="Search"
     {...props}
-  />
+  >
+    <SearchIcon color={"black"} />
+  </BaseInput>
+);
+
+export const PrimaryInput = (props: any) => (
+  <BaseInput borderRadius={8} {...props} />
 );

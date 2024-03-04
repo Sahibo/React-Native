@@ -8,6 +8,7 @@ interface IBaseButton {
   borderWidth?: number;
   borderColor?: string;
   backgroundColor?: string;
+  flexDirection?: "row" | "column";
   alignItems: "stretch" | "center" | "flex-start" | "flex-end" | "baseline";
   justifyContent:
     | "flex-start"
@@ -29,6 +30,7 @@ const BaseButton = ({
   borderColor,
   backgroundColor = "#0BCE83",
   alignItems = "center",
+  flexDirection,
   justifyContent = "center",
   onPress,
   children,
@@ -45,6 +47,7 @@ const BaseButton = ({
           borderWidth,
           borderColor,
           backgroundColor,
+          flexDirection,
           alignItems,
           justifyContent,
         },
