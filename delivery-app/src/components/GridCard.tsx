@@ -1,23 +1,32 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { H4, GreyTextXSmall } from "./reusables/StyledTypography";
 import { Image } from "expo-image";
+import { Colors } from "./Colors";
 
-function GridCard({}) {
+interface Props {
+  data?: any;
+  navigation?: any;
+}
+
+function GridCard({ data, navigation }: Props) {
+  //const { data } = data;
+  //console.log("item", data);
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Image
-          style={styles.image}
-          source={require("../images/apelsin.png")}
-          contentFit="cover"
-        />
-      </View>
-      <View style={styles.innerContainer}>
-        <H4>Fruits</H4>
+    <Pressable
+      onPress={() => navigation.navigate("CatalogScreen", { data: data })}
+    >
+      <View style={styles.container}>
+        <View>
+          <Image style={styles.image} source={data.image} contentFit="cover" />
+        </View>
+        <View style={styles.innerContainer}>
+          <H4>{data.name}</H4>
 
-        <GreyTextXSmall>(32)</GreyTextXSmall>
+          <GreyTextXSmall>{"| |"}</GreyTextXSmall>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -26,7 +35,7 @@ const styles = StyleSheet.create({
     gap: 10,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#D9D0E3",
+    borderColor: Colors.border,
     width: 165,
     height: 210,
   },

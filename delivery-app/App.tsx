@@ -8,7 +8,6 @@ import {
 } from "./src/components/reusables/StyledTypography";
 
 import {
-  CustomButton,
   PrimaryButton,
   SecondaryButton,
 } from "./src/components/reusables/StyledButton";
@@ -28,6 +27,7 @@ import ListCard from "./src/components/ListCard";
 
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import CatalogScreen from "./src/screens/CatalogScreen";
+import ProductScreen from "./src/screens/ProductScreen";
 
 import { useWindowDimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -35,6 +35,12 @@ import TabNavigation from "./src/navigations/bottomTabNavigation/index";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/LoginScreen";
+import RegisterScreen from "./src/screens/RegisterScreen";
+import CategoryScreen from "./src/screens/CategoryScreen";
+import AuthProvider from "./src/context/AuthContext";
+import CartProvider from "./src/context/CartContext";
+
+import RootNavigation from "./src/navigations/rootNavigation/index";
 
 export default function App() {
   const { width } = useWindowDimensions();
@@ -44,15 +50,16 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* <LoginScreen /> */}
-      {/* <WelcomeScreen /> */}
-      <NavigationContainer>
-        <TabNavigation />
-      </NavigationContainer>
-
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      <CartProvider>
+        <View style={styles.container}>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+          <StatusBar style="auto" />
+        </View>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
@@ -63,6 +70,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+{
+  /* <WelcomeScreen /> */
+}
+{
+  /* <RegisterScreen /> */
+}
+{
+  /* <LoginScreen /> */
+}
+{
+  /* <CatalogScreen /> */
+}
+{
+  /* CategoryScreen */
+}
 
 {
   /* <CustomButton onPress={HandleOnClick} height={40} width={78}>
@@ -95,15 +118,4 @@ const styles = StyleSheet.create({
       <SecondaryButton onPress={HandleOnClick} height={40} width={78}>
         <HeartIcon />
       </SecondaryButton> */
-}
-
-{
-  /* <GridCard />
-      <ListCard /> */
-}
-{
-  /* <WelcomeScreen /> */
-}
-{
-  /* <CatalogScreen /> */
 }

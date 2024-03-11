@@ -1,30 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { PrimaryInput } from "../components/reusables/StyledInput";
-import {
-  CustomButton,
-  PrimaryButton,
-} from "../components/reusables/StyledButton";
-import { ButtonText } from "../components/reusables/StyledTypography";
-import FormHeader from "../components/FormHeader";
+import React, { useContext } from "react";
+import { StyleSheet, View } from "react-native";
+import { AuthContext, User } from "../context/AuthContext";
 
-const LoginScreen = () => {
+import FormHeader from "../components/FormHeader";
+import FormComponent from "../components/FormComponent";
+
+interface Props {
+  route?: any;
+  navigation?: any;
+}
+
+const LoginScreen = ({ route, navigation }: Props) => {
   return (
     <View style={styles.container}>
+      <FormHeader text={"Log In"} navigation={navigation}/>
       <View style={styles.innerContainer}>
-        <FormHeader text={"Log In"} />
-
-        <View style={styles.innerContainer}>
-          <PrimaryInput placeholder={"Email"} flex={1} />
-          <PrimaryInput placeholder={"Password"} flex={1} />
-        </View>
-      </View>
-
-      <View style={styles.innerContainer}>
-        <PrimaryButton height={56} width={"100%"}>
-          <ButtonText children={"Log In"} fontSize={18} />
-        </PrimaryButton>
-        <ButtonText children={"Forgot your password?"} color={"#9586A8"} />
+        <FormComponent formType="Log In" navigation={navigation}/>
       </View>
     </View>
   );
@@ -34,17 +25,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    paddingHorizontal: 16,
     alignItems: "center",
     justifyContent: "space-between",
+    gap: 32,
+
+    paddingHorizontal: 20,
+    paddingBottom: 16,
   },
   innerContainer: {
+    flex: 1,
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
     gap: 16,
-    marginVertical: 16,
-    paddingBottom: 16,
   },
 });
 

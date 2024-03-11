@@ -7,6 +7,7 @@ import { Typography } from "./StyledTypography";
 interface IBaseInput {
   height: number;
   width: number;
+  flex: number;
   paddingVertical?: number;
   paddingHorizontal?: number;
   gap?: number;
@@ -33,6 +34,7 @@ interface IBaseInput {
 const BaseInput = ({
   height = 48,
   width,
+  flex,
   paddingVertical = 12,
   paddingHorizontal = 25,
   gap = 16,
@@ -56,6 +58,7 @@ const BaseInput = ({
         {
           height,
           width,
+          flex,
           paddingVertical,
           paddingHorizontal,
           gap,
@@ -87,16 +90,11 @@ const BaseInput = ({
 };
 
 export const SearchInput = (props: any) => (
-  <BaseInput
-    width="100%"
-    borderRadius={27}
-    placeholder="Search"
-    {...props}
-  >
+  <BaseInput width="100%" borderRadius={27} placeholder="Search" {...props}>
     <SearchIcon color={"black"} />
   </BaseInput>
 );
 
 export const PrimaryInput = (props: any) => (
-  <BaseInput borderRadius={8} {...props} />
+  <BaseInput borderRadius={8} width={"100%"} {...props} />
 );

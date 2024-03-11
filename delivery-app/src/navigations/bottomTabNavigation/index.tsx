@@ -7,8 +7,8 @@ import GridIcon from "../../icons/GridIcon";
 import ShoppingCartIcon from "../../icons/ShoppingCartIcon";
 import UserIcon from "../../icons/UserIcon";
 import { StyleSheet } from "react-native";
-
-import CategoryNavigation from "../categoryNavigation/index";
+import CategoryNavigation from "../categoryNavigation";
+import UserNavigation from "../userNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,8 +16,8 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="CategoryScreen"
-        component={CategoryScreen}
+        name="CategoryNavigation"
+        component={CategoryNavigation}
         options={{
           headerShown: false,
           tabBarLabel: "",
@@ -47,8 +47,8 @@ const TabNavigation = () => {
       />
 
       <Tab.Screen
-        name="UserScreen"
-        component={UserScreen}
+        name="UserNavigation"
+        component={UserNavigation}
         options={{
           headerShown: false,
           tabBarLabel: "",

@@ -1,13 +1,16 @@
 import React, { ReactNode } from "react";
 import { Pressable } from "react-native";
+import { Colors } from "../Colors";
 
 interface IBaseButton {
   height: number;
-  width: number;
-  borderRadius?: number;
+  width?: number;
+  paddingHorizontal: number;
+  gap: number;
+  borderRadius: number;
   borderWidth?: number;
   borderColor?: string;
-  backgroundColor?: string;
+  backgroundColor: string;
   flexDirection?: "row" | "column";
   alignItems: "stretch" | "center" | "flex-start" | "flex-end" | "baseline";
   justifyContent:
@@ -23,8 +26,10 @@ interface IBaseButton {
 }
 
 const BaseButton = ({
-  height,
+  height = 56,
   width,
+  paddingHorizontal = 29,
+  gap = 16,
   borderRadius = 8,
   borderWidth,
   borderColor,
@@ -43,6 +48,7 @@ const BaseButton = ({
         {
           height,
           width,
+          paddingHorizontal,
           borderRadius,
           borderWidth,
           borderColor,
@@ -50,6 +56,7 @@ const BaseButton = ({
           flexDirection,
           alignItems,
           justifyContent,
+          gap,
         },
       ]}
       {...props}
@@ -59,17 +66,13 @@ const BaseButton = ({
   );
 };
 
-export const CustomButton = (props: any) => <BaseButton {...props} />;
-
-export const PrimaryButton = (props: any) => (
-  <BaseButton height={56} {...props} />
-);
+export const PrimaryButton = (props: any) => <BaseButton {...props} />;
 
 export const SecondaryButton = (props: any) => (
   <BaseButton
-    backgroundColor="#FFFFFF"
+    backgroundColor={Colors.white}
+    borderColor={Colors.border}
     borderWidth={1}
-    borderColor="#D9D0E3"
     {...props}
   />
 );

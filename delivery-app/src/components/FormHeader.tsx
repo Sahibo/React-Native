@@ -1,14 +1,25 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import ChevronLeftIcon from "../icons/ChevronLeftIcon";
-import { ButtonText, Typography } from "./reusables/StyledTypography";
+import { ButtonText } from "./reusables/StyledTypography";
 import { H1 } from "./reusables/StyledTypography";
+import { Colors } from "./Colors";
 
 type Props = {
   text: string;
+  route?: any;
+  navigation?: any;
 };
 
-const FormHeader = ({ text }: Props) => {
+const FormHeader = ({ text, navigation }: Props) => {
+  const onPress = () => {
+    if (text === "Log In") {
+      navigation.navigate("RegisterScreen");
+      console.log("pressed");
+    } else if (text === "Sign Up") {
+      navigation.navigate("LoginScreen");
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={[styles.sideContainer, styles.leftContainer]}>
@@ -18,11 +29,11 @@ const FormHeader = ({ text }: Props) => {
       <H1 children={text} />
 
       <View style={[styles.sideContainer, styles.rightContainer]}>
-        {text === "Log In" ? (
-          <ButtonText children={"register"} color={"#9586A8"} />
-        ) : text === "Sign Up" ? (
-          <ButtonText children={"login"} color={"#9586A8"} />
-        ) : null}
+        <ButtonText
+          onPress={onPress}
+          color={Colors.textSecondary}
+          children={text === "Log In" ? "Register" : "Login"}
+        />
       </View>
     </View>
   );

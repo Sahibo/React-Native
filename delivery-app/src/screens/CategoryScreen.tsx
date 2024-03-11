@@ -1,14 +1,44 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View, FlatList, Button } from "react-native";
+import { StyleSheet, View, ScrollView, Button } from "react-native";
 import GridCard from "../components/GridCard";
 import { H1 } from "../components/reusables/StyledTypography";
 import { SearchInput } from "../components/reusables/StyledInput";
+import { categories } from "../../data";
 
-const CategoryScreen = () => {
-  const data = Array.from({ length: 9 }).map((_, index) => ({
-    id: index.toString(),
-  }));
+// interface DataProps {
+//   name: string;
+//     image: string;
+//     subCategories: {
+//         name: string;
+//         products: {
+//             name: string;
+//             price: number;
+//             unit: string;
+//             country: string;
+//             description: string;
+//             isFavorite: boolean;
+//             inCart: boolean;
+//             image: string;
+//         }[];
+//     }[];
+// }
+
+interface Props {
+  //data: DataProps;
+  navigation?: any;
+}
+
+const CategoryScreen = ({ navigation }: Props) => {
+  const data = categories;
+ // console.log("CategoryScreen", categories);
+
+  function renderGridCards() {
+    return categories.map((category, key) => (
+      <GridCard key={key} data={category} navigation={navigation} />
+    ));
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -17,15 +47,12 @@ const CategoryScreen = () => {
       </View>
 
       <View style={styles.contentContainer}>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <GridCard />}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
+        <ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.flatListContent}
-          columnWrapperStyle={styles.flatListContent}
-        />
+          contentContainerStyle={styles.listContent}
+        >
+          {renderGridCards()}
+        </ScrollView>
       </View>
     </View>
   );
@@ -50,8 +77,10 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 20,
   },
-  flatListContent: {
-    alignItems: "flex-start",
+  listContent: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     gap: 20,
   },
 });
