@@ -1,13 +1,16 @@
 export const categories = [
   {
+    id: 1,
     name: "Vegetables",
     image:
       "https://media.meer.com/attachments/a9bb6ac957102b45f975490e7191d4de48157a8c/store/fill/1380/1035/4608f2fa19dabc3fc37577e91e09525b49a8729f27d6f32f553b50681a32/Cauliflowers-have-anticancer-properties.jpg",
     subCategories: [
       {
+        id: 1,
         name: "Cabbage and lettuce",
         products: [
           {
+            id: 1,
             name: "Boston Lettuce",
             price: 1.1,
             unit: "piece",
@@ -20,6 +23,7 @@ export const categories = [
               "https://avatars.mds.yandex.net/get-images-cbir/4375996/fFeZIakyEXHetEHWXK1vhQ1093/ocr",
           },
           {
+            id: 2,
             name: "Purple Cauliflower",
             price: 1.85,
             unit: "kg",
@@ -32,6 +36,7 @@ export const categories = [
               "https://avatars.mds.yandex.net/get-images-cbir/4335510/av-hPKYP5QfAAdWwod6qEw1495/ocr",
           },
           {
+            id: 3,
             name: "Savoy Cabbage",
             price: 1.45,
             unit: "kg",
@@ -44,6 +49,7 @@ export const categories = [
               "https://avatars.mds.yandex.net/get-images-cbir/987123/vus4x_I0d6sa_HSo8xzMsQ2082/ocr",
           },
           {
+            id: 4,
             name: "Purple Cauliflower",
             price: 1.85,
             unit: "kg",
@@ -58,9 +64,11 @@ export const categories = [
         ],
       },
       {
+        id: 2,
         name: "Cucumbers and tomatoes",
         products: [
           {
+            id: 5,
             name: "Cucumber",
             price: 1.1,
             unit: "kg",
@@ -73,6 +81,7 @@ export const categories = [
               "https://avatars.mds.yandex.net/i?id=64898ba1964b359811a32fd1071977ad_l-5344510-images-thumbs&n=13",
           },
           {
+            id: 6,
             name: "Tomato",
             price: 1.25,
             unit: "kg",
@@ -85,6 +94,7 @@ export const categories = [
               "https://images.freeimages.com/images/large-previews/ac1/tomatoes-1323060.jpg",
           },
           {
+            id: 7,
             name: "Cherry Tomato",
             price: 1.45,
             unit: "kg",
@@ -99,9 +109,11 @@ export const categories = [
         ],
       },
       {
+        id: 3,
         name: "Peppers",
         products: [
           {
+            id: 8,
             name: "Bell Pepper",
             price: 1.1,
             unit: "kg",
@@ -114,6 +126,7 @@ export const categories = [
               "https://sk-briz.ru/wp-content/uploads/a/e/5/ae5cce47c0bb2fb1a425f6ac379a7e25.jpeg",
           },
           {
+            id: 9,
             name: "Bell Pepper 2",
             price: 1.15,
             unit: "kg",
@@ -126,6 +139,7 @@ export const categories = [
               "https://sk-briz.ru/wp-content/uploads/a/e/5/ae5cce47c0bb2fb1a425f6ac379a7e25.jpeg",
           },
           {
+            id: 10,
             name: "Bell Pepper 3",
             price: 1.1,
             unit: "kg",
@@ -138,6 +152,7 @@ export const categories = [
               "https://sk-briz.ru/wp-content/uploads/a/e/5/ae5cce47c0bb2fb1a425f6ac379a7e25.jpeg",
           },
           {
+            id: 11,
             name: "Bell Pepper 4",
             price: 1.15,
             unit: "kg",

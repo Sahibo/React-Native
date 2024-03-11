@@ -1,22 +1,20 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export interface CartItem {
+export interface Cart {
+
   id: number;
-  name: string;
-  price: number;
-  quantity: number;
 }
 
 interface CartContextType {
-  cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  carts: Cart[];
+  addToCart: (item: Cart) => void;
   removeFromCart: (itemId: number) => void;
 }
 
-const initialCart: CartItem[] = [];
+const initialCart: Cart[] = [];
 
 export const CartContext = createContext<CartContextType>({
-  cartItems: initialCart,
+  carts: initialCart,
   addToCart: () => {},
   removeFromCart: () => {},
 });
@@ -26,20 +24,21 @@ export const useCart = () => useContext(CartContext);
 interface CartProviderProps {
   children: ReactNode;
 }
-export const CartProvider = ({ children }: CartProviderProps) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCart);
 
-  const addToCart = (item: CartItem) => {
-    setCartItems([...cartItems, item]);
+export const CartProvider = ({ children }: CartProviderProps) => {
+  const [carts, setCarts] = useState<Cart[]>(initialCart);
+
+  const addToCart = (item: Cart) => {
+    setCarts([...carts, item]);
   };
 
   const removeFromCart = (itemId: number) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
+    const updatedCart = carts.filter((item) => item.id !== itemId);
+    setCarts(updatedCart);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ carts, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

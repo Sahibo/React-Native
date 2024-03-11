@@ -4,8 +4,11 @@ import { PrimaryInput } from "../components/reusables/StyledInput";
 import { PrimaryButton } from "../components/reusables/StyledButton";
 import { ButtonText } from "../components/reusables/StyledTypography";
 import { Colors } from "../components/Colors";
-
+import { useAuth } from "../context/AuthContext";
+import { useUserContext } from "../context/UserContext";
+import { Address } from "../interfaces";
 const AddAdressScreen = ({}) => {
+  const userContext = useUserContext();
   const [address, setAddress] = useState({
     address: "",
     city: "",
@@ -15,6 +18,20 @@ const AddAdressScreen = ({}) => {
 
   const handleInputChange = (field: string, value: string) => {
     setAddress({ ...address, [field]: value });
+  };
+
+  const handleAddAddress = () => {
+    const { user, addAddress } = userContext;
+
+    if (user.addresses) {
+      const addressData: Address = {
+        id: user.addresses.length + 1,
+        ...address,
+      };
+
+      addAddress(addressData);
+      console.log("success", addressData);
+    } else console.log("error", user.addresses);
   };
 
   return (
@@ -36,7 +53,7 @@ const AddAdressScreen = ({}) => {
         placeholder={"ZIP"}
         onChangeText={(text: string) => handleInputChange("ZIP", text)}
       />
-      <PrimaryButton>
+      <PrimaryButton onPress={handleAddAddress}>
         <ButtonText children={"SAVE CARD"} />
       </PrimaryButton>
     </View>

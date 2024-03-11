@@ -6,32 +6,12 @@ import { H1 } from "../components/reusables/StyledTypography";
 import { SearchInput } from "../components/reusables/StyledInput";
 import { categories } from "../../data";
 
-// interface DataProps {
-//   name: string;
-//     image: string;
-//     subCategories: {
-//         name: string;
-//         products: {
-//             name: string;
-//             price: number;
-//             unit: string;
-//             country: string;
-//             description: string;
-//             isFavorite: boolean;
-//             inCart: boolean;
-//             image: string;
-//         }[];
-//     }[];
-// }
-
 interface Props {
-  //data: DataProps;
   navigation?: any;
 }
 
 const CategoryScreen = ({ navigation }: Props) => {
   const data = categories;
- // console.log("CategoryScreen", categories);
 
   function renderGridCards() {
     return categories.map((category, key) => (

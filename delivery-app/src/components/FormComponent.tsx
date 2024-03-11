@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { AuthContext, User } from "../context/AuthContext";
-
+import { User } from "../interfaces";
 import { PrimaryInput } from "./reusables/StyledInput";
 import { PrimaryButton } from "../components/reusables/StyledButton";
 import { ButtonText } from "./reusables/StyledTypography";
 import { Colors } from "./Colors";
+import { useAuth } from "../context/AuthContext";
 
 interface Props {
   formType: "Log In" | "Sign Up";
@@ -14,9 +14,10 @@ interface Props {
 }
 
 const FormComponent = ({ formType, navigation }: Props) => {
-  const { logIn, signUp } = useContext(AuthContext);
+  // const { users, logIn, signUp } = useContext(AuthContext);
+  const { users, logIn, signUp } = useAuth();
 
-  const [credentials, setCredentials] = useState<User>({
+  const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
@@ -32,7 +33,7 @@ const FormComponent = ({ formType, navigation }: Props) => {
 
   const handleFormSubmit = async () => {
     const user: User = {
-      id: 0, //tmp
+      id: users.length + 1,
       ...credentials,
     };
 

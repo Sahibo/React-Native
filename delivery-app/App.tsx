@@ -39,26 +39,24 @@ import RegisterScreen from "./src/screens/RegisterScreen";
 import CategoryScreen from "./src/screens/CategoryScreen";
 import AuthProvider from "./src/context/AuthContext";
 import CartProvider from "./src/context/CartContext";
+import UserProvider from "./src/context/UserContext";
 
 import RootNavigation from "./src/navigations/rootNavigation/index";
 
 export default function App() {
-  const { width } = useWindowDimensions();
-
-  const HandleOnClick = () => {
-    console.log(width);
-  };
 
   return (
     <AuthProvider>
-      <CartProvider>
-        <View style={styles.container}>
-          <NavigationContainer>
-            <RootNavigation />
-          </NavigationContainer>
-          <StatusBar style="auto" />
-        </View>
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <View style={styles.container}>
+            <NavigationContainer>
+              <RootNavigation />
+            </NavigationContainer>
+            <StatusBar style="auto" />
+          </View>
+        </CartProvider>
+      </UserProvider>
     </AuthProvider>
   );
 }

@@ -6,27 +6,19 @@ import React, {
   useState,
 } from "react";
 
-import { user } from "../data/user";
-
+import { User } from "../interfaces";
 import * as SecureStore from "expo-secure-store";
 
-export interface User {
-  id?: number;
-  name?: string;
-  email: string;
-  password: string;
-  confirmPassword?: string;
-}
-
 type AuthContextType = {
+  users: User[];
   token: string | null;
-
   signUp: (user: User) => Promise<void>;
   logIn: (user: User) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>({
+  users: [],
   token: null,
   signUp: async (user: User) => {},
   logIn: async (user: User) => {},
@@ -37,15 +29,21 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
 
   const signUp = async (user: User) => {
     try {
       const customToken = "customToken";
       setToken(customToken);
-      await SecureStore.setItemAsync("token", customToken);
+      await SecureStore.setItemAsync("token", `${user.id}`);
 
+      setUsers((prev) => [...prev, user]);
 
       console.log("User signed up successfully");
     } catch (error) {
@@ -55,10 +53,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logIn = async (user: User) => {
     try {
-      const customToken = "customToken";
-      setToken(customToken);
-      await SecureStore.setItemAsync("token", customToken);
-      console.log("User logged in successfully");
+      let existingUser = users.find(
+        (existingUser) => user.email === existingUser.email
+      );
+
+      if (existingUser) {
+        const customToken = "customToken";
+        setToken(customToken);
+        await SecureStore.setItemAsync("token", customToken);
+        console.log("User logged in successfully");
+      } else console.error("Error incorrect email:");
     } catch (error) {
       console.error("Error during login:", error);
     }
@@ -68,12 +72,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       setToken(null);
       await SecureStore.deleteItemAsync("token");
+
       console.log("User signed out successfully");
     } catch (error) {
       console.error("Error during sign out:", error);
     }
   };
-
 
   useEffect(() => {
     const getToken = async () => {
@@ -92,7 +96,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     getToken();
   }, []);
 
-  const contextValue = { token, signUp, logIn, signOut };
+  useEffect(() => {
+    //console.log("useeffect", users);
+  }, [users]);
+
+  const contextValue = { users, token, signUp, logIn, signOut };
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
